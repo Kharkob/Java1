@@ -27,6 +27,7 @@ public class Main {
         double averageAge = sum / ages.length;
         System.out.println("Average age: " + averageAge);
 
+
         
         
         String[] names = {"Sam", "Tommy", "Tim", "Sally", "Buck", "Bob"};
@@ -77,11 +78,14 @@ public class Main {
         
         System.out.println(isSumGreaterThan100(ages));
 
+        double [] ages3 = {12.1, 13.1};
+        double [] ages4 = {14.1, 15.1};
         
-        System.out.println(calculateAverage(ages));
-
+        System.out.println(calculateAverage(ages3));
+ 
+       
         
-        System.out.println(isFirstArrayAverageGreaterThanSecond(ages, ages2));
+        System.out.println(isFirstArrayAverageGreaterThanSecond(ages3, ages4));
 
        
         System.out.println(willBuyDrink(true, 15.75));
@@ -103,22 +107,27 @@ public class Main {
 
 
     public static boolean isSumGreaterThan100(int[] array) {
-        int sum = Arrays.stream(array).sum();
+        int sum = 0 ;
+        for (int i = 0; i < array.length; i++){
+        sum += array[i];
+        }
         return sum > 100;
     }
 
     
-    public static double calculateAverage(int[] array) {
-        return Arrays.stream(array).average().orElse(Double.NaN);
+    public static double calculateAverage(double[] array) {
+        int sum = 0 ;
+        for (int i = 0; i < array.length; i++){
+        sum += array[i];
+        }
+        return sum / array.length;
     }
 
     
     public static boolean isFirstArrayAverageGreaterThanSecond(double[] firstArray, double[] secondArray) {
-        double firstArrayAverage = Arrays.stream(firstArray).average().orElse(Double.NaN);
-        double secondArrayAverage = Arrays.stream(secondArray).average().orElse(Double.NaN);
-        return firstArrayAverage > secondArrayAverage;
+       
+        return calculateAverage(firstArray) > calculateAverage(secondArray);
     }
-
     
     public static boolean willBuyDrink(boolean isHotOutside, double moneyInPocket) {
         return isHotOutside && moneyInPocket > 10.50;
